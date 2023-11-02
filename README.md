@@ -8,6 +8,8 @@
 
 ### The source code can be found under ./PyConv/src/main.py 
 
-![MadagascarPrivateGIF](https://github.com/Anchor-Environmental/Amy---2073-Debmarine/assets/149476021/e6353cbd-ae4a-48cb-900d-a406378beb13)
+
+![MadagascarPrivateGIF (2)](https://github.com/Anchor-Environmental/Amy---2073-Debmarine/assets/149476021/171af087-69a9-43b9-b71e-4e2fbf2d1016)
+
 
 ### The data that it pulls from is ./PyConv/data and the results are in ./PyConv/out 📂
