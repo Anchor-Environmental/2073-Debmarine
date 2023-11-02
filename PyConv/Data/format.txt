@@ -1,6 +1,6 @@
-table-name           'Boundary Section : 1'
+table-name           'Boundary Section : {boundary_number}'
 contents             'Logarithmic         '
-location             'North1              '
+location             '{location_chunk}'
 time-function        'non-equidistant'
 reference-time       20220101
 time-unit            'minutes'
@@ -8,4 +8,4 @@ interpolation        'linear'
 parameter            'time                '                     unit '[min]'
 parameter            'riemann         (r)  end A'               unit '[m/s]'
 parameter            'riemann         (r)  end B'               unit '[m/s]'
-records-in-table     12
+records-in-table     {chunk_count}
