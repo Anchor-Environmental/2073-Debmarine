@@ -40,7 +40,6 @@ def read_xlsx():
             print(f'Current File: {file}')
             print(f"Chunk size {chunk_length}\n")
             num_rows = len(data.loc[:,'V_p'])
-            num_of_chunks = num_rows/chunk_length
             chunk_count = 0
             for entry_number in range(num_rows-chunk_length):
                 
