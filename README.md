@@ -1,3 +1,3 @@
 # Welcome to the Anchor Environmental 2073 Debmarine GitHub! ⚓
 
-## Stuff still needs to be added. Feel free to add things and play around when you get some time! ✍️
+## This is still a work in progress and stuff still needs to be added. ! ✍️
