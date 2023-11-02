@@ -1,0 +1,598 @@
+table-name           'Boundary Section : 1'
+contents             'Logarithmic         '
+location             'North1              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  1.3119379e-001  3.1600874e-002
+ 3.6000000e+002  1.0076498e-001  2.7426904e-002
+ 7.2000000e+002  2.1638559e-001  1.7159575e-001
+ 1.0800000e+003  2.4638653e-001  1.6792391e-001
+ 1.4400000e+003  6.0001560e-002 -4.8684116e-002
+ 1.8000000e+003 -2.2900006e-002 -9.7138315e-002
+ 2.1600000e+003  9.9575214e-002  1.1759833e-001
+ 2.5200000e+003  2.7087328e-001  2.4178509e-001
+ 2.8800000e+003  1.5474053e-001  5.5155825e-002
+ 3.2400000e+003 -2.3901187e-002 -1.1006180e-001
+ 3.6000000e+003  4.3160357e-002  6.0197443e-002
+ 3.9600000e+003  3.2413527e-001  4.1794324e-001
+table-name           'Boundary Section : 2'
+contents             'Logarithmic         '
+location             'North2              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  3.1600874e-002 -2.9659355e-002
+ 3.6000000e+002  2.7426904e-002  4.6052970e-002
+ 7.2000000e+002  1.7159575e-001  3.0058128e-001
+ 1.0800000e+003  1.6792391e-001  2.4941608e-001
+ 1.4400000e+003 -4.8684116e-002 -4.5857657e-002
+ 1.8000000e+003 -9.7138315e-002  2.9438511e-002
+ 2.1600000e+003  1.1759833e-001  2.3819730e-001
+ 2.5200000e+003  2.4178509e-001  3.6713308e-001
+ 2.8800000e+003  5.5155825e-002  8.5692503e-002
+ 3.2400000e+003 -1.1006180e-001 -9.2975855e-002
+ 3.6000000e+003  6.0197443e-002  1.8861716e-001
+ 3.9600000e+003  4.1794324e-001  4.6947533e-001
+table-name           'Boundary Section : 3'
+contents             'Logarithmic         '
+location             'North3              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -2.9659355e-002  8.3864473e-002
+ 3.6000000e+002  4.6052970e-002  1.0975947e-001
+ 7.2000000e+002  3.0058128e-001  3.4348595e-001
+ 1.0800000e+003  2.4941608e-001  3.3027485e-001
+ 1.4400000e+003 -4.5857657e-002  4.9485058e-002
+ 1.8000000e+003  2.9438511e-002  1.1617486e-001
+ 2.1600000e+003  2.3819730e-001  1.9181235e-001
+ 2.5200000e+003  3.6713308e-001  3.3765122e-001
+ 2.8800000e+003  8.5692503e-002  2.5219369e-001
+ 3.2400000e+003 -9.2975855e-002 -6.5398000e-004
+ 3.6000000e+003  1.8861716e-001  1.2595375e-001
+ 3.9600000e+003  4.6947533e-001  4.4510183e-001
+table-name           'Boundary Section : 4'
+contents             'Logarithmic         '
+location             'North4              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  8.3864473e-002  1.2664244e-001
+ 3.6000000e+002  1.0975947e-001  6.8943419e-002
+ 7.2000000e+002  3.4348595e-001  2.2442087e-001
+ 1.0800000e+003  3.3027485e-001  2.5856018e-001
+ 1.4400000e+003  4.9485058e-002  8.6368419e-002
+ 1.8000000e+003  1.1617486e-001  1.1021485e-001
+ 2.1600000e+003  1.9181235e-001  1.1454626e-001
+ 2.5200000e+003  3.3765122e-001  2.8607532e-001
+ 2.8800000e+003  2.5219369e-001  2.7003622e-001
+ 3.2400000e+003 -6.5398000e-004  9.0072200e-003
+ 3.6000000e+003  1.2595375e-001  7.6807931e-002
+ 3.9600000e+003  4.4510183e-001  4.6815738e-001
+table-name           'Boundary Section : 5'
+contents             'Logarithmic         '
+location             'North5              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  1.2664244e-001  1.8387425e-001
+ 3.6000000e+002  6.8943419e-002  1.2953974e-001
+ 7.2000000e+002  2.2442087e-001  1.7259534e-001
+ 1.0800000e+003  2.5856018e-001  1.8102834e-001
+ 1.4400000e+003  8.6368419e-002  1.0749693e-001
+ 1.8000000e+003  1.1021485e-001  2.1650246e-001
+ 2.1600000e+003  1.1454626e-001  1.4346065e-001
+ 2.5200000e+003  2.8607532e-001  2.1055263e-001
+ 2.8800000e+003  2.7003622e-001  2.7453247e-001
+ 3.2400000e+003  9.0072200e-003  7.4921548e-002
+ 3.6000000e+003  7.6807931e-002  8.8099629e-002
+ 3.9600000e+003  4.6815738e-001  3.8378984e-001
+table-name           'Boundary Section : 6'
+contents             'Logarithmic         '
+location             'North6              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  1.8387425e-001  2.0591909e-001
+ 3.6000000e+002  1.2953974e-001  1.5832990e-001
+ 7.2000000e+002  1.7259534e-001  9.6196651e-002
+ 1.0800000e+003  1.8102834e-001  1.1007512e-001
+ 1.4400000e+003  1.0749693e-001  1.3540536e-001
+ 1.8000000e+003  2.1650246e-001  1.7988396e-001
+ 2.1600000e+003  1.4346065e-001  9.5766462e-002
+ 2.5200000e+003  2.1055263e-001  1.4945039e-001
+ 2.8800000e+003  2.7453247e-001  2.4981534e-001
+ 3.2400000e+003  7.4921548e-002  6.6851579e-002
+ 3.6000000e+003  8.8099629e-002  2.2580430e-002
+ 3.9600000e+003  3.8378984e-001  2.9963502e-001
+table-name           'Boundary Section : 7'
+contents             'Logarithmic         '
+location             'North7              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  2.0591909e-001  2.0077273e-001
+ 3.6000000e+002  1.5832990e-001  1.0224127e-001
+ 7.2000000e+002  9.6196651e-002  8.1598070e-003
+ 1.0800000e+003  1.1007512e-001  8.5462093e-002
+ 1.4400000e+003  1.3540536e-001  1.1705278e-001
+ 1.8000000e+003  1.7988396e-001  1.5427576e-001
+ 2.1600000e+003  9.5766462e-002  8.1215531e-002
+ 2.5200000e+003  1.4945039e-001  9.5974430e-002
+ 2.8800000e+003  2.4981534e-001  2.3970112e-001
+ 3.2400000e+003  6.6851579e-002  3.5283137e-002
+ 3.6000000e+003  2.2580430e-002  6.6780810e-003
+ 3.9600000e+003  2.9963502e-001  2.7207702e-001
+table-name           'Boundary Section : 8'
+contents             'Logarithmic         '
+location             'Offshore1           '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -2.0074922e-001 -1.6889192e-001
+ 3.6000000e+002 -1.0214886e-001 -1.1170202e-001
+ 7.2000000e+002 -8.1176270e-003 -8.0262594e-002
+ 1.0800000e+003 -8.5474245e-002 -1.0530625e-001
+ 1.4400000e+003 -1.1705960e-001 -6.3336805e-002
+ 1.8000000e+003 -1.5425418e-001 -1.1791803e-001
+ 2.1600000e+003 -8.1187487e-002 -1.1041311e-001
+ 2.5200000e+003 -9.6032456e-002 -1.3383119e-001
+ 2.8800000e+003 -2.3971468e-001 -1.9711506e-001
+ 3.2400000e+003 -3.5211079e-002 -1.0406149e-002
+ 3.6000000e+003 -6.7252600e-003 -3.1204591e-002
+ 3.9600000e+003 -2.7212396e-001 -2.7550176e-001
+table-name           'Boundary Section : 9'
+contents             'Logarithmic         '
+location             'Offshore2           '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.6889192e-001 -1.8296115e-001
+ 3.6000000e+002 -1.1170202e-001 -1.0164043e-001
+ 7.2000000e+002 -8.0262594e-002 -1.2779413e-001
+ 1.0800000e+003 -1.0530625e-001 -1.5903722e-001
+ 1.4400000e+003 -6.3336805e-002 -7.5616129e-002
+ 1.8000000e+003 -1.1791803e-001 -1.2480576e-001
+ 2.1600000e+003 -1.1041311e-001 -1.3247249e-001
+ 2.5200000e+003 -1.3383119e-001 -1.6544793e-001
+ 2.8800000e+003 -1.9711506e-001 -2.0163329e-001
+ 3.2400000e+003 -1.0406149e-002 -2.4578616e-002
+ 3.6000000e+003 -3.1204591e-002 -6.2302049e-002
+ 3.9600000e+003 -2.7550176e-001 -2.7126098e-001
+table-name           'Boundary Section : 10'
+contents             'Logarithmic         '
+location             'Offshore3           '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.8296115e-001 -1.9759210e-001
+ 3.6000000e+002 -1.0164043e-001 -8.5284770e-002
+ 7.2000000e+002 -1.2779413e-001 -1.0225023e-001
+ 1.0800000e+003 -1.5903722e-001 -1.7449756e-001
+ 1.4400000e+003 -7.5616129e-002 -9.2264675e-002
+ 1.8000000e+003 -1.2480576e-001 -9.9361725e-002
+ 2.1600000e+003 -1.3247249e-001 -1.1529696e-001
+ 2.5200000e+003 -1.6544793e-001 -2.0262416e-001
+ 2.8800000e+003 -2.0163329e-001 -2.1224621e-001
+ 3.2400000e+003 -2.4578616e-002  5.9781540e-002
+ 3.6000000e+003 -6.2302049e-002 -3.4550395e-002
+ 3.9600000e+003 -2.7126098e-001 -3.3425689e-001
+table-name           'Boundary Section : 11'
+contents             'Logarithmic         '
+location             'Offshore4           '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.9759210e-001 -1.6025960e-001
+ 3.6000000e+002 -8.5284770e-002 -4.0756084e-002
+ 7.2000000e+002 -1.0225023e-001 -6.8573602e-002
+ 1.0800000e+003 -1.7449756e-001 -1.6536306e-001
+ 1.4400000e+003 -9.2264675e-002 -7.9913214e-002
+ 1.8000000e+003 -9.9361725e-002 -2.3203861e-002
+ 2.1600000e+003 -1.1529696e-001 -5.3468492e-002
+ 2.5200000e+003 -2.0262416e-001 -2.1024744e-001
+ 2.8800000e+003 -2.1224621e-001 -2.0326962e-001
+ 3.2400000e+003  5.9781540e-002  1.2657884e-001
+ 3.6000000e+003 -3.4550395e-002  1.1897847e-002
+ 3.9600000e+003 -3.3425689e-001 -3.6091498e-001
+table-name           'Boundary Section : 12'
+contents             'Logarithmic         '
+location             'Offshore5           '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.6025960e-001 -1.2655363e-001
+ 3.6000000e+002 -4.0756084e-002  2.7817860e-003
+ 7.2000000e+002 -6.8573602e-002 -6.6758320e-002
+ 1.0800000e+003 -1.6536306e-001 -1.9276579e-001
+ 1.4400000e+003 -7.9913214e-002 -6.5476924e-002
+ 1.8000000e+003 -2.3203861e-002  3.6557782e-002
+ 2.1600000e+003 -5.3468492e-002 -5.2849047e-002
+ 2.5200000e+003 -2.1024744e-001 -2.2601791e-001
+ 2.8800000e+003 -2.0326962e-001 -1.6800372e-001
+ 3.2400000e+003  1.2657884e-001  1.4959608e-001
+ 3.6000000e+003  1.1897847e-002  1.5864735e-002
+ 3.9600000e+003 -3.6091498e-001 -3.7848100e-001
+table-name           'Boundary Section : 13'
+contents             'Logarithmic         '
+location             'Offshore6           '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.2655363e-001 -1.2299038e-001
+ 3.6000000e+002  2.7817860e-003  5.8477238e-002
+ 7.2000000e+002 -6.6758320e-002 -6.1733644e-002
+ 1.0800000e+003 -1.9276579e-001 -2.1162005e-001
+ 1.4400000e+003 -6.5476924e-002 -1.4748504e-002
+ 1.8000000e+003  3.6557782e-002  6.2602490e-002
+ 2.1600000e+003 -5.2849047e-002 -6.7557499e-002
+ 2.5200000e+003 -2.2601791e-001 -2.2957595e-001
+ 2.8800000e+003 -1.6800372e-001 -1.1636105e-001
+ 3.2400000e+003  1.4959608e-001  1.5008692e-001
+ 3.6000000e+003  1.5864735e-002  7.7450570e-003
+ 3.9600000e+003 -3.7848100e-001 -3.5791984e-001
+table-name           'Boundary Section : 14'
+contents             'Logarithmic         '
+location             'Offshore7           '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.2299038e-001 -1.2623565e-001
+ 3.6000000e+002  5.8477238e-002  4.4929456e-002
+ 7.2000000e+002 -6.1733644e-002 -4.7300901e-002
+ 1.0800000e+003 -2.1162005e-001 -2.0001882e-001
+ 1.4400000e+003 -1.4748504e-002  7.5649880e-003
+ 1.8000000e+003  6.2602490e-002  7.5523704e-002
+ 2.1600000e+003 -6.7557499e-002 -8.1370451e-002
+ 2.5200000e+003 -2.2957595e-001 -2.0073998e-001
+ 2.8800000e+003 -1.1636105e-001 -1.0796227e-001
+ 3.2400000e+003  1.5008692e-001  1.2162501e-001
+ 3.6000000e+003  7.7450570e-003  2.9399708e-002
+ 3.9600000e+003 -3.5791984e-001 -3.3700696e-001
+table-name           'Boundary Section : 15'
+contents             'Logarithmic         '
+location             'Offshore8           '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.2623565e-001 -9.3829438e-002
+ 3.6000000e+002  4.4929456e-002  4.0160071e-002
+ 7.2000000e+002 -4.7300901e-002 -2.4674570e-002
+ 1.0800000e+003 -2.0001882e-001 -1.4665990e-001
+ 1.4400000e+003  7.5649880e-003 -2.6665887e-002
+ 1.8000000e+003  7.5523704e-002  3.9917704e-002
+ 2.1600000e+003 -8.1370451e-002 -2.1629320e-002
+ 2.5200000e+003 -2.0073998e-001 -1.8205428e-001
+ 2.8800000e+003 -1.0796227e-001 -8.9983329e-002
+ 3.2400000e+003  1.2162501e-001  1.5316576e-001
+ 3.6000000e+003  2.9399708e-002  2.8927453e-002
+ 3.9600000e+003 -3.3700696e-001 -3.4224677e-001
+table-name           'Boundary Section : 16'
+contents             'Logarithmic         '
+location             'Offshore9           '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -9.3829438e-002 -1.2275949e-001
+ 3.6000000e+002  4.0160071e-002  4.4838946e-002
+ 7.2000000e+002 -2.4674570e-002  4.9517833e-002
+ 1.0800000e+003 -1.4665990e-001 -9.3679488e-002
+ 1.4400000e+003 -2.6665887e-002  6.1478700e-003
+ 1.8000000e+003  3.9917704e-002  7.2829261e-002
+ 2.1600000e+003 -2.1629320e-002  1.8253900e-002
+ 2.5200000e+003 -1.8205428e-001 -1.2728213e-001
+ 2.8800000e+003 -8.9983329e-002 -1.0513450e-001
+ 3.2400000e+003  1.5316576e-001  1.5248914e-001
+ 3.6000000e+003  2.8927453e-002  1.1204052e-001
+ 3.9600000e+003 -3.4224677e-001 -2.8061351e-001
+table-name           'Boundary Section : 17'
+contents             'Logarithmic         '
+location             'Offshore10          '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.2275949e-001 -1.1522213e-001
+ 3.6000000e+002  4.4838946e-002  1.3531046e-002
+ 7.2000000e+002  4.9517833e-002  1.6097933e-002
+ 1.0800000e+003 -9.3679488e-002 -6.9603190e-002
+ 1.4400000e+003  6.1478700e-003  3.5713557e-002
+ 1.8000000e+003  7.2829261e-002  8.5431993e-002
+ 2.1600000e+003  1.8253900e-002  4.4276536e-002
+ 2.5200000e+003 -1.2728213e-001 -8.3325848e-002
+ 2.8800000e+003 -1.0513450e-001 -8.5485399e-002
+ 3.2400000e+003  1.5248914e-001  1.5805052e-001
+ 3.6000000e+003  1.1204052e-001  1.2859167e-001
+ 3.9600000e+003 -2.8061351e-001 -2.4013832e-001
+table-name           'Boundary Section : 18'
+contents             'Logarithmic         '
+location             'Offshore11          '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.1522213e-001 -1.0243178e-001
+ 3.6000000e+002  1.3531046e-002 -4.3243220e-003
+ 7.2000000e+002  1.6097933e-002 -4.3503448e-002
+ 1.0800000e+003 -6.9603190e-002 -1.1550177e-001
+ 1.4400000e+003  3.5713557e-002  3.9473200e-004
+ 1.8000000e+003  8.5431993e-002  7.2194085e-002
+ 2.1600000e+003  4.4276536e-002  2.3010017e-002
+ 2.5200000e+003 -8.3325848e-002 -1.1661993e-001
+ 2.8800000e+003 -8.5485399e-002 -1.1253114e-001
+ 3.2400000e+003  1.5805052e-001  1.6272833e-001
+ 3.6000000e+003  1.2859167e-001  1.2965128e-001
+ 3.9600000e+003 -2.4013832e-001 -2.5786430e-001
+table-name           'Boundary Section : 19'
+contents             'Logarithmic         '
+location             'Offshore12          '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.0243178e-001 -1.8961072e-001
+ 3.6000000e+002 -4.3243220e-003 -6.3540094e-002
+ 7.2000000e+002 -4.3503448e-002 -1.1192521e-001
+ 1.0800000e+003 -1.1550177e-001 -2.5898141e-001
+ 1.4400000e+003  3.9473200e-004 -1.0250753e-001
+ 1.8000000e+003  7.2194085e-002  3.1715754e-002
+ 2.1600000e+003  2.3010017e-002 -3.4353420e-002
+ 2.5200000e+003 -1.1661993e-001 -2.5635755e-001
+ 2.8800000e+003 -1.1253114e-001 -1.9065829e-001
+ 3.2400000e+003  1.6272833e-001  7.3070541e-002
+ 3.6000000e+003  1.2965128e-001  6.5221265e-002
+ 3.9600000e+003 -2.5786430e-001 -3.3230496e-001
+table-name           'Boundary Section : 20'
+contents             'Logarithmic         '
+location             'Offshore13          '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.8961072e-001 -1.9161864e-001
+ 3.6000000e+002 -6.3540094e-002 -5.1590815e-002
+ 7.2000000e+002 -1.1192521e-001 -1.1677581e-001
+ 1.0800000e+003 -2.5898141e-001 -3.2115629e-001
+ 1.4400000e+003 -1.0250753e-001 -1.1810430e-001
+ 1.8000000e+003  3.1715754e-002  1.0653152e-002
+ 2.1600000e+003 -3.4353420e-002 -9.5014296e-002
+ 2.5200000e+003 -2.5635755e-001 -3.3531716e-001
+ 2.8800000e+003 -1.9065829e-001 -1.9977409e-001
+ 3.2400000e+003  7.3070541e-002  5.1881906e-002
+ 3.6000000e+003  6.5221265e-002 -3.6524445e-002
+ 3.9600000e+003 -3.3230496e-001 -4.1142714e-001
+table-name           'Boundary Section : 21'
+contents             'Logarithmic         '
+location             'Offshore14          '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000 -1.9161864e-001 -1.6728935e-001
+ 3.6000000e+002 -5.1590815e-002 -4.4632297e-002
+ 7.2000000e+002 -1.1677581e-001 -1.3175161e-001
+ 1.0800000e+003 -3.2115629e-001 -2.9188985e-001
+ 1.4400000e+003 -1.1810430e-001 -3.6432423e-002
+ 1.8000000e+003  1.0653152e-002  5.8397632e-002
+ 2.1600000e+003 -9.5014296e-002 -9.0757772e-002
+ 2.5200000e+003 -3.3531716e-001 -3.2205755e-001
+ 2.8800000e+003 -1.9977409e-001 -4.9321301e-002
+ 3.2400000e+003  5.1881906e-002  9.3449444e-002
+ 3.6000000e+003 -3.6524445e-002 -9.9775583e-002
+ 3.9600000e+003 -4.1142714e-001 -4.6543396e-001
+table-name           'Boundary Section : 22'
+contents             'Logarithmic         '
+location             'South1              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  2.0872398e-001  2.0872398e-001
+ 3.6000000e+002  7.3837779e-002  7.3837779e-002
+ 7.2000000e+002  1.1554038e-001  1.1554038e-001
+ 1.0800000e+003  2.6895532e-001  2.6895532e-001
+ 1.4400000e+003  1.5377685e-001  1.5377685e-001
+ 1.8000000e+003  1.8270252e-002  1.8270252e-002
+ 2.1600000e+003 -2.9450780e-003 -2.9450780e-003
+ 2.5200000e+003  6.5166563e-002  6.5166563e-002
+ 2.8800000e+003  4.8605580e-003  4.8605580e-003
+ 3.2400000e+003 -1.0396244e-001 -1.0396244e-001
+ 3.6000000e+003 -5.3102668e-002 -5.3102668e-002
+ 3.9600000e+003  1.0702290e-001  1.0702290e-001
+table-name           'Boundary Section : 23'
+contents             'Logarithmic         '
+location             'South2              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  2.0872398e-001  2.2202544e-001
+ 3.6000000e+002  7.3837779e-002  1.1680912e-001
+ 7.2000000e+002  1.1554038e-001  2.3324053e-001
+ 1.0800000e+003  2.6895532e-001  4.1337153e-001
+ 1.4400000e+003  1.5377685e-001  2.1972619e-001
+ 1.8000000e+003  1.8270252e-002  7.3483571e-002
+ 2.1600000e+003 -2.9450780e-003  1.0221932e-001
+ 2.5200000e+003  6.5166563e-002  2.8823116e-001
+ 2.8800000e+003  4.8605580e-003  1.6666892e-001
+ 3.2400000e+003 -1.0396244e-001 -4.7176250e-003
+ 3.6000000e+003 -5.3102668e-002  9.6990377e-002
+ 3.9600000e+003  1.0702290e-001  3.4808362e-001
+table-name           'Boundary Section : 24'
+contents             'Logarithmic         '
+location             'South3              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  2.2202544e-001  1.9742504e-001
+ 3.6000000e+002  1.1680912e-001  9.9295713e-002
+ 7.2000000e+002  2.3324053e-001  2.0733753e-001
+ 1.0800000e+003  4.1337153e-001  3.6272436e-001
+ 1.4400000e+003  2.1972619e-001  1.5351658e-001
+ 1.8000000e+003  7.3483571e-002  1.6341839e-002
+ 2.1600000e+003  1.0221932e-001  9.8581463e-002
+ 2.5200000e+003  2.8823116e-001  2.7372322e-001
+ 2.8800000e+003  1.6666892e-001  4.7658980e-002
+ 3.2400000e+003 -4.7176250e-003 -7.0202112e-002
+ 3.6000000e+003  9.6990377e-002  7.2046205e-002
+ 3.9600000e+003  3.4808362e-001  3.0991495e-001
+table-name           'Boundary Section : 25'
+contents             'Logarithmic         '
+location             'South4              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  1.9742504e-001  1.7202564e-001
+ 3.6000000e+002  9.9295713e-002  6.3438632e-002
+ 7.2000000e+002  2.0733753e-001  1.6891576e-001
+ 1.0800000e+003  3.6272436e-001  3.0099285e-001
+ 1.4400000e+003  1.5351658e-001  5.0500553e-002
+ 1.8000000e+003  1.6341839e-002 -4.6822112e-002
+ 2.1600000e+003  9.8581463e-002  7.8039899e-002
+ 2.5200000e+003  2.7372322e-001  2.3619233e-001
+ 2.8800000e+003  4.7658980e-002 -6.5379255e-002
+ 3.2400000e+003 -7.0202112e-002 -1.2952305e-001
+ 3.6000000e+003  7.2046205e-002  7.1372211e-002
+ 3.9600000e+003  3.0991495e-001  3.9115098e-001
+table-name           'Boundary Section : 26'
+contents             'Logarithmic         '
+location             'South5              '
+time-function        'non-equidistant'
+reference-time       20220101
+time-unit            'minutes'
+interpolation        'linear'
+parameter            'time                '                     unit '[min]'
+parameter            'riemann         (r)  end A'               unit '[m/s]'
+parameter            'riemann         (r)  end B'               unit '[m/s]'
+records-in-table     12
+ 0.0000000e+000  1.7202564e-001  1.6729516e-001
+ 3.6000000e+002  6.3438632e-002  4.4630602e-002
+ 7.2000000e+002  1.6891576e-001  1.3173732e-001
+ 1.0800000e+003  3.0099285e-001  2.9188389e-001
+ 1.4400000e+003  5.0500553e-002  3.6430947e-002
+ 1.8000000e+003 -4.6822112e-002 -5.8413751e-002
+ 2.1600000e+003  7.8039899e-002  9.0729550e-002
+ 2.5200000e+003  2.3619233e-001  3.2204544e-001
+ 2.8800000e+003 -6.5379255e-002  4.9325224e-002
+ 3.2400000e+003 -1.2952305e-001 -9.3466245e-002
+ 3.6000000e+003  7.1372211e-002  9.9745445e-002
+ 3.9600000e+003  3.9115098e-001  4.6541876e-001
