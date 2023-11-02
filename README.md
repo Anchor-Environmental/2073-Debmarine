@@ -1,6 +1,6 @@
 # Welcome to the Anchor Environmental 2073 Debmarine GitHub! ⚓
 
-#### This is still a work in progress and stuff still needs to be added. ! ✍️
+> #### _This is still a work in progress and stuff still needs to be added. !_ ✍️
 
 ## The repo currently contains a script to convert a batch of .xlsx files to .txt files in the .bct format
 
