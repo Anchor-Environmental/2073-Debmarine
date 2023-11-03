@@ -22,7 +22,7 @@ def main():
 def read_format():
     """" Reads a format file and stores the string as a global var """
     
-    for file_name in os.listdir('./PyConv/data/'):
+    for file_name in os.listdir('./PyConv/data/convert'):
         if "Boundry" in file_name:
             files_to_read.append(file_name) 
 
@@ -91,7 +91,7 @@ def write_output(output_file,
                  file_name, chunk_count):
     """ Writes the data to a .txt file according to an input format """
 
-    place = file_name[0: 8]
+    place = file_name[0: file_name.index('_')]
     chunk_place = f'{place}{chunk_count}'
     output_chunk = np.column_stack((output_time, endA, endB))
     output_chunk.reshape(chunk_length, 3)
