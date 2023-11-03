@@ -1,4 +1,20 @@
-# __Welcome to the Anchor Environmental 2073 Debmarine GitHub!__ ⚓
+<head>
+  <a href="https://anchorenvironmental.co.za/">
+      
+    <img width="25%" src="https://github.com/Anchor-Environmental/.github/Anchorlogo.svg" alt="Anchor Logo">
+  </a>
+</head>
+
+<body>
+  <p>
+  <h1>
+    <b>
+    Welcome to the Anchor Environmental 2073 Debmarine GitHub! ⚓
+    </b>
+  </h1>
+</p> 
+  
+---
 
 > [!NOTE]
 > _This is still a work in progress and stuff still needs to be added! ✍️_
