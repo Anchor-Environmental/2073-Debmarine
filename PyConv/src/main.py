@@ -22,7 +22,7 @@ def main():
 def read_format():
     """" Reads a format file and stores the string as a global var """
     
-    for file_name in os.listdir('./PyConv/data/convert'):
+    for file_name in os.listdir('./PyConv/data/convert/'):
         if "Boundry" in file_name:
             files_to_read.append(file_name) 
 
@@ -50,7 +50,7 @@ def read_xlsx():
 
         for file in files_to_read:  
 
-            data = pd.read_excel(f'./PyConv/data/{file}', sheet_name = 0, index_col = 0)
+            data = pd.read_excel(f'./PyConv/data/convert/{file}', sheet_name = 0, index_col = 0)
             print(f'Current File: {file}')
             print(f"Chunk size {chunk_length}\n")
             num_rows = len(data.loc[:,'V_p'])
