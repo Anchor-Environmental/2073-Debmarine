@@ -1,6 +1,7 @@
 <head>
+  
   <a href="https://anchorenvironmental.co.za/">
-    <img width="25%" src="https://github.com/Anchor-Environmental/.github/Anchorlogo.svg" alt="Anchor Logo">
+    <img width="25%" src="./Anchorlogo.svg" alt="Anchor Logo">
   </a>
 </head>
 
