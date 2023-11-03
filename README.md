@@ -9,7 +9,7 @@
 ### The source code can be found under ./PyConv/src/main.py 
 
 <p align="center">
-  <img width="200" src="![MadagascarPrivateGIF (2)](https://github.com/Anchor-Environmental/Amy---2073-Debmarine/assets/149476021/171af087-69a9-43b9-b71e-4e2fbf2d1016)  " alt="Material Bread logo">
+  <img width="200" src="(https://github.com/Anchor-Environmental/Amy---2073-Debmarine/assets/149476021/171af087-69a9-43b9-b71e-4e2fbf2d1016)  " alt="Material Bread logo">
 </p>
 
 
