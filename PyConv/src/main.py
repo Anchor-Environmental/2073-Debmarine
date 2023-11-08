@@ -88,7 +88,8 @@ def write_output(output_file,
                  endB, 
                  file_format, 
                  boundary_section_count, 
-                 file_name, chunk_count):
+                 file_name,
+                 chunk_count):
     """ Writes the data to a .txt file according to an input format """
 
     place = file_name[0: file_name.index('_')]
