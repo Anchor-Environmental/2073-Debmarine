@@ -29,7 +29,7 @@ def read_format():
         else:
             FileNotFoundError
     
-    with open(r'./PyConv/data/format.txt',mode='r') as format_file:
+    with open(r'./file-conversions/data/format.txt',mode='r') as format_file:
         
         global output_format 
         output_format = format_file.readlines()
