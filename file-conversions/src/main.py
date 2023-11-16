@@ -52,7 +52,7 @@ def read_xlsx():
 
             data = pd.read_excel(f'./file-conversions/data/convert/{file}', sheet_name = 0, index_col = 0)
             print(f'Current File: {file}')
-            print(f"Chunk size {chunk_length}\n")
+            print(f"Chunk size: {chunk_length}\n")
             num_rows = len(data.loc[:,'V_p'])
             chunk_count = 0
 
