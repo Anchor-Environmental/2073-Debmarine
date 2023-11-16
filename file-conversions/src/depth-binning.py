@@ -75,7 +75,7 @@ def read_xlsx(file):
     for current_chunk in range(int(len(pd_data)/chunk_length)):
       
       pd_bin_data = pd_data.iloc[(current_chunk * 4):(current_chunk * 4 + chunk_length)]
-      pd_bin_data = pd_bin_data.drop(["Latitude", "Longitude"], axis=1)
+      pd_bin_data = pd_bin_data.drop(["Latitude", "Longitude", "Hour"], axis=1)
       np_bin_data = pd_bin_data.to_numpy()
       nan_index = np.argwhere(np.isnan(np_bin_data[0]))[0][0]
       # np_bin_data = np_bin_data[~np.isnan(np_bin_data)]
