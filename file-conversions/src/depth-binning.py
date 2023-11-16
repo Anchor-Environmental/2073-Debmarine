@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
+import math
 
 #--------------------------------------Global Vars-----------------------------------------------
 
@@ -36,35 +37,41 @@ raw_data_depth_array = [0.4940249,
                155.85069,
                186.1256]
 
+raw_data_layer_thickness = []
+
+prevValue=0
+for value in raw_data_depth_array:
+  raw_data_layer_thickness.append(value-prevValue)
+  prevValue = value
+
+
 delft_chunk_size = 10
 
-read_xlsx_output_dict = {
-  "Vp": [],
-  "delftDepth": []
-}
 #------------------------------------------------------------------------------------------------
 
 def main():
 
   for file_name in os.listdir('./file-conversions/data/test_convert/'):
-    if "Boundry" in file_name:
+    if "South" in file_name:
       files_to_read.append(file_name) 
 
     else:
       FileNotFoundError
 
   for file in files_to_read:
-    output = read_xlsx(file)
-    bin_velocity(output)
-  
+    output_xlsx = read_xlsx(file)
+    output_scaling = apply_scaling(output_xlsx)
+    bin_velocity(output_scaling)
 
 #----------------------------------------Read xlsx-----------------------------------------------
 
 def read_xlsx(file):
     
     read_xlsx_output_dict = {
-      "Vp": [],
-      "delftDepth": []
+      "vp": [],
+      "delftDepth": [],
+      "percentLayerThickness": [],
+      "weightedVp": []
     }
 
     print(f'Current File: {file}')
@@ -78,30 +85,47 @@ def read_xlsx(file):
       pd_bin_data = pd_bin_data.drop(["Latitude", "Longitude", "Hour"], axis=1)
       np_bin_data = pd_bin_data.to_numpy()
       nan_index = np.argwhere(np.isnan(np_bin_data[0]))[0][0]
-      # np_bin_data = np_bin_data[~np.isnan(np_bin_data)]
-      
-      # bin_data = pd_data
-      # print(f"Data: {np_bin_data}, nan index: {nan_index}, depth at nan: {depth_array[nan_index]},\n__________________END OF CHUNK_________________\n")
-      
+           
       max_chunk_depth = raw_data_depth_array[nan_index - 1] 
       delft_depth_array = np.linspace(max_chunk_depth/delft_chunk_size, max_chunk_depth, delft_chunk_size)
-
-       
-      read_xlsx_output_dict['Vp'].append(np_bin_data)
+      current_chunk_layer_thickness = [(x/max_chunk_depth * 100) for x in (raw_data_layer_thickness[0:nan_index])]
+      
+      read_xlsx_output_dict['vp'].append(np_bin_data)
       read_xlsx_output_dict['delftDepth'].append(delft_depth_array)
-    
+      read_xlsx_output_dict['percentLayerThickness'].append(current_chunk_layer_thickness)
+         
     return(read_xlsx_output_dict)
 #------------------------------------------------------------------------------------------------
 
 
-#--------------------------------------Bin velocity----------------------------------------------
+#--------------------------------------Apply Scaling---------------------------------------------
 
-def bin_velocity(output):
-  print(output)
-  pass
+def apply_scaling(scaling_input):
+
+  for chunkNumber,chunk in enumerate(scaling_input['vp']):
+    weighted_vp = []
+    for vp_list in chunk:
+        vp_list = [no_nan for no_nan in vp_list if not math.isnan(no_nan)]
+        weighted_vp.append([vp*scaling_input['percentLayerThickness'][chunkNumber][vp_count] for  vp_count, vp in enumerate(vp_list)])
+        
+        # print(f"The vp array is: {vp} The is : {scaling_input['percentLayerThickness'][chunkNumber]}")
+    scaling_input['weightedVp'].append(weighted_vp)
+
+  return(scaling_input)
+  
   
     
 #------------------------------------------------------------------------------------------------
+
+#--------------------------------------Apply Scaling---------------------------------------------
+
+def bin_velocity(bin_velocity_input):
+  print(bin_velocity_input['weightedVp'])
+
+  
+    
+#------------------------------------------------------------------------------------------------
+
 
 if __name__ == "__main__":
     main()
