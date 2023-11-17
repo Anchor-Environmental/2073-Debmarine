@@ -61,40 +61,49 @@ def main():
   for file in files_to_read:
     output_xlsx = read_xlsx(file)
     output_scaling = apply_scaling(output_xlsx)
-    bin_velocity(output_scaling)
+    output_depth_bin = bin_depths(output_scaling)
+    output_bin_velocity = bin_velocity(output_depth_bin[0], output_depth_bin[1])
+    print(output_depth_bin[0]['depthBins'])
+    print('\n')
+    print(output_depth_bin[1]['weightedVp'])
+    
+  
 
 #----------------------------------------Read xlsx-----------------------------------------------
 
 def read_xlsx(file):
     
-    read_xlsx_output_dict = {
-      "vp": [],
-      "delftDepth": [],
-      "percentLayerThickness": [],
-      "weightedVp": []
-    }
+  read_xlsx_output_dict = {
+    "chunkDepth": [],
+    "vp": [],
+    "delftDepth": [],
+    "percentLayerThickness": [],
+    "weightedVp": []
+  }
 
-    print(f'Current File: {file}')
-    print(f"Chunk size: {chunk_length}")
+  print(f'Current File: {file}')
+  print(f"Chunk size: {chunk_length}")
+  
+  pd_data = pd.read_excel(f'./file-conversions/data/test_convert/{file}', sheet_name = 0, index_col = 0)
+
+  for current_chunk in range(int(len(pd_data)/chunk_length)):
     
-    pd_data = pd.read_excel(f'./file-conversions/data/test_convert/{file}', sheet_name = 0, index_col = 0)
+    pd_bin_data = pd_data.iloc[(current_chunk * 4):(current_chunk * 4 + chunk_length)]
+    pd_bin_data = pd_bin_data.drop(["Latitude", "Longitude", "Hour"], axis=1)
+    np_bin_data = pd_bin_data.to_numpy()
+    nan_index = np.argwhere(np.isnan(np_bin_data[0]))[0][0]
+          
+    max_chunk_depth = raw_data_depth_array[nan_index - 1] 
+    delft_depth_array = np.linspace(max_chunk_depth/delft_chunk_size, max_chunk_depth, delft_chunk_size)
+    current_chunk_layer_thickness = [(x/max_chunk_depth * 100) for x in (raw_data_layer_thickness[0:nan_index])]
+    chunkDepth = raw_data_depth_array[0:(nan_index)]
 
-    for current_chunk in range(int(len(pd_data)/chunk_length)):
-      
-      pd_bin_data = pd_data.iloc[(current_chunk * 4):(current_chunk * 4 + chunk_length)]
-      pd_bin_data = pd_bin_data.drop(["Latitude", "Longitude", "Hour"], axis=1)
-      np_bin_data = pd_bin_data.to_numpy()
-      nan_index = np.argwhere(np.isnan(np_bin_data[0]))[0][0]
-           
-      max_chunk_depth = raw_data_depth_array[nan_index - 1] 
-      delft_depth_array = np.linspace(max_chunk_depth/delft_chunk_size, max_chunk_depth, delft_chunk_size)
-      current_chunk_layer_thickness = [(x/max_chunk_depth * 100) for x in (raw_data_layer_thickness[0:nan_index])]
-      
-      read_xlsx_output_dict['vp'].append(np_bin_data)
-      read_xlsx_output_dict['delftDepth'].append(delft_depth_array)
-      read_xlsx_output_dict['percentLayerThickness'].append(current_chunk_layer_thickness)
+    read_xlsx_output_dict['chunkDepth'].append(chunkDepth)
+    read_xlsx_output_dict['vp'].append(np_bin_data)
+    read_xlsx_output_dict['delftDepth'].append(delft_depth_array)
+    read_xlsx_output_dict['percentLayerThickness'].append(current_chunk_layer_thickness)
          
-    return(read_xlsx_output_dict)
+  return(read_xlsx_output_dict)
 #------------------------------------------------------------------------------------------------
 
 
@@ -112,20 +121,37 @@ def apply_scaling(scaling_input):
     scaling_input['weightedVp'].append(weighted_vp)
 
   return(scaling_input)
-  
-  
     
 #------------------------------------------------------------------------------------------------
 
-#--------------------------------------Apply Scaling---------------------------------------------
+#---------------------------------------Bin Velocity---------------------------------------------
 
-def bin_velocity(bin_velocity_input):
-  print(bin_velocity_input['weightedVp'])
-
+def bin_velocity(bin_velocity_depth_input, bin_velocity_input):
   
-    
+  return(bin_velocity_input)
 #------------------------------------------------------------------------------------------------
 
+
+#----------------------------------------Bin Depths----------------------------------------------
+def bin_depths(bin_depths_input):
+  bins = {
+    "depthBins":[],
+    "velocityBins":[]
+  }
+  for chunkNumber, delft_depth_list in enumerate(bin_depths_input['delftDepth']):
+    
+    prevValue = 0
+    depth_bins = []
+    for depth in delft_depth_list:
+      
+      selectednum = [num for num in bin_depths_input['chunkDepth'][chunkNumber] if prevValue < num <= depth]
+      depth_bins.append(selectednum)
+      prevValue=depth
+    
+    bins["depthBins"].append(depth_bins)
+
+  return([bins, bin_depths_input])
+#------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
     main()
