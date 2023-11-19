@@ -63,9 +63,9 @@ def main():
     output_scaling = apply_scaling(output_xlsx)
     output_depth_bin = bin_depths(output_scaling)
     output_bin_velocity = bin_velocity(output_depth_bin[0], output_depth_bin[1])
+    output_average_velocity = average_velocity(output_bin_velocity)
     
-    
-    print(f"velocity bins: {output_bin_velocity['velocityBins']},\n\n\nThickness bins{output_bin_velocity['thicknessBins']}")
+    # print(f"velocity bins: {output_bin_velocity['velocityBins']},\n\n\nThickness bins{output_bin_velocity['thicknessBins']}")
 #----------------------------------------Read xlsx-----------------------------------------------
 
 def read_xlsx(file):
@@ -167,6 +167,20 @@ def bin_velocity(bin_velocity_depth_input, bin_velocity_input):
 
   return (bin_velocity_depth_input)
 #------------------------------------------------------------------------------------------------
+
+def average_velocity(average_velocity_input):
+
+  for val_counter,val in enumerate(average_velocity_input['velocityBins']):
+
+    np_velocity = np.array(val).sum()
+    np_thickness = np.array(average_velocity_input['thicknessBins'][val_counter]).sum()
+    if np_thickness == 0:
+        avgsum = np.nan
+    else: 
+      avgsum = np_velocity/np_thickness
+    
+    print(f'{avgsum}')
+  return
 
 if __name__ == "__main__":
     main()
