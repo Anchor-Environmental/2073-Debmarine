@@ -1,47 +1,21 @@
-raw_data_depth_array = [0.4940249, 
-               1.541375,
-               2.645669,
-               3.819495,
-               5.0782242,
-               6.4406142,
-               7.9295602,
-               9.5729971,
-               11.405,
-               13.46714,
-               15.81007,
-               18.49556,
-               21.59882,
-               25.211411,
-               29.444731,
-               34.434151,
-               40.344051,
-               47.373692,
-               55.76429,
-               65.807266,
-               77.853851,
-               92.326073,
-               109.7293,
-               130.666,
-            ]
+original_array = [[2, 3, 1], [1], [], [1214]]
+flat_list = [1, 2, 3, 4, 5, 6, 7, 8]
 
-delft_depth_array = [13.0666,
-                    26.1332,
-                    39.1998,
-                    52.2664,
-                    65.333,
-                    78.3996,
-                    91.4662,
-                    104.5328,
-                    117.5994,
-                    130.666
-                    ]
+import numpy as np
 
+result_array = []
+test1 = np.array([])
+test2 = np.array([])
+index = 0
 
-prevVal = 0
-for value in delft_depth_array:
-  selectednum = [num for num in raw_data_depth_array if prevVal < num <= value]
-  print(selectednum)
-  prevVal=value
+for sublist in original_array:
+    # print(sublist)
+    new_sublist = []
+    for element in sublist:
+        
+        if index < len(flat_list):
+            new_sublist.append(flat_list[index])
+            index += 1
+    result_array.append(new_sublist)
 
-
-
+print(test1/test2)
