@@ -63,12 +63,9 @@ def main():
     output_scaling = apply_scaling(output_xlsx)
     output_depth_bin = bin_depths(output_scaling)
     output_bin_velocity = bin_velocity(output_depth_bin[0], output_depth_bin[1])
-    print(output_depth_bin[0]['depthBins'])
-    print('\n')
-    print(output_depth_bin[1]['weightedVp'])
     
-  
-
+    
+    print(f"velocity bins: {output_bin_velocity['velocityBins']},\n\n\nThickness bins{output_bin_velocity['thicknessBins']}")
 #----------------------------------------Read xlsx-----------------------------------------------
 
 def read_xlsx(file):
@@ -106,7 +103,6 @@ def read_xlsx(file):
   return(read_xlsx_output_dict)
 #------------------------------------------------------------------------------------------------
 
-
 #--------------------------------------Apply Scaling---------------------------------------------
 
 def apply_scaling(scaling_input):
@@ -124,19 +120,12 @@ def apply_scaling(scaling_input):
     
 #------------------------------------------------------------------------------------------------
 
-#---------------------------------------Bin Velocity---------------------------------------------
-
-def bin_velocity(bin_velocity_depth_input, bin_velocity_input):
-  
-  return(bin_velocity_input)
-#------------------------------------------------------------------------------------------------
-
-
 #----------------------------------------Bin Depths----------------------------------------------
 def bin_depths(bin_depths_input):
   bins = {
     "depthBins":[],
-    "velocityBins":[]
+    "velocityBins":[],
+    "thicknessBins": []
   }
   for chunkNumber, delft_depth_list in enumerate(bin_depths_input['delftDepth']):
     
@@ -151,6 +140,32 @@ def bin_depths(bin_depths_input):
     bins["depthBins"].append(depth_bins)
 
   return([bins, bin_depths_input])
+#------------------------------------------------------------------------------------------------
+
+#---------------------------------------Bin Velocity---------------------------------------------
+
+def bin_velocity(bin_velocity_depth_input, bin_velocity_input):
+  
+  for binned_count, binnedDepth in enumerate(bin_velocity_depth_input['depthBins']):
+
+    # print("\n\n\n",bin_velocity_input['percentLayerThickness'][binned_count],"\n\n\n")
+
+    for weightedVp_count, flatList in enumerate(bin_velocity_input['weightedVp'][binned_count]):
+      # print(flatList)
+      index = 0
+      
+      for bin in binnedDepth:
+        newSublistVelocity = []
+        newSublistThickness = []
+        for element in bin:
+          if index < len(flatList):
+            newSublistVelocity.append(flatList[index])
+            newSublistThickness.append(bin_velocity_input['percentLayerThickness'][binned_count][index])
+            index += 1
+        bin_velocity_depth_input['velocityBins'].append(newSublistVelocity)
+        bin_velocity_depth_input['thicknessBins'].append(newSublistThickness)
+
+  return (bin_velocity_depth_input)
 #------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
