@@ -39,6 +39,8 @@ raw_data_depth_array = [0.4940249,
 
 raw_data_layer_thickness = []
 
+g = 9.81
+
 prevValue=0
 for value in raw_data_depth_array:
   raw_data_layer_thickness.append(value-prevValue)
@@ -64,7 +66,11 @@ def main():
     output_depth_bin = bin_depths(output_scaling)
     output_bin_velocity = bin_velocity(output_depth_bin[0], output_depth_bin[1])
     output_average_velocity = average_velocity(output_bin_velocity)
+
+    outTest = testFunc(output_depth_bin,output_average_velocity)
     
+    print(outTest)
+
     # print(f"velocity bins: {output_bin_velocity['velocityBins']},\n\n\nThickness bins{output_bin_velocity['thicknessBins']}")
 #----------------------------------------Read xlsx-----------------------------------------------
 
@@ -105,18 +111,18 @@ def read_xlsx(file):
 
 #--------------------------------------Apply Scaling---------------------------------------------
 
-def apply_scaling(scaling_input):
+def apply_scaling(exctracted_dict):
 
-  for chunkNumber,chunk in enumerate(scaling_input['vp']):
+  for chunkNumber,chunk in enumerate(exctracted_dict['vp']):
     weighted_vp = []
     for vp_list in chunk:
         vp_list = [no_nan for no_nan in vp_list if not math.isnan(no_nan)]
-        weighted_vp.append([vp*scaling_input['percentLayerThickness'][chunkNumber][vp_count] for  vp_count, vp in enumerate(vp_list)])
+        weighted_vp.append([vp*exctracted_dict['percentLayerThickness'][chunkNumber][vp_count] for  vp_count, vp in enumerate(vp_list)])
         
         # print(f"The vp array is: {vp} The is : {scaling_input['percentLayerThickness'][chunkNumber]}")
-    scaling_input['weightedVp'].append(weighted_vp)
+    exctracted_dict['weightedVp'].append(weighted_vp)
 
-  return(scaling_input)
+  return(exctracted_dict)
     
 #------------------------------------------------------------------------------------------------
 
@@ -170,17 +176,38 @@ def bin_velocity(bin_velocity_depth_input, bin_velocity_input):
 
 def average_velocity(average_velocity_input):
 
+  averaged_velocity=[]
+
   for val_counter,val in enumerate(average_velocity_input['velocityBins']):
 
     np_velocity = np.array(val).sum()
     np_thickness = np.array(average_velocity_input['thicknessBins'][val_counter]).sum()
     if np_thickness == 0:
-        avgsum = np.nan
+      avgsum = np.nan
     else: 
       avgsum = np_velocity/np_thickness
     
-    print(f'{avgsum}')
-  return
+    averaged_velocity.append(avgsum)
+
+  return averaged_velocity
+
+def testFunc(testFuncInputDepth,testFuncInputVel):
+
+  # print(testFuncInputDepth[1]['delftDepth'])
+  # print("\n\n")
+  chunkedAvergagedVelocity = np.reshape(testFuncInputVel, (len(testFuncInputDepth[1]['delftDepth']),chunk_length,delft_chunk_size))
+  # print("\n\n")
+
+  for chunk_number, chunk in enumerate(chunkedAvergagedVelocity):
+    print(f"data chunk: {chunk}\nDelft depth: {testFuncInputDepth[1]['delftDepth'][chunk_number]}")
+    for list_count, list in enumerate(chunk):
+      for element_count, element in enumerate(list):
+        if element>=0:
+          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element + np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])
+        else:
+          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element - np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])
+
+  return chunkedAvergagedVelocity
 
 if __name__ == "__main__":
     main()
