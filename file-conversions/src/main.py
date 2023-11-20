@@ -55,7 +55,7 @@ def read_xlsx():
             print(f"Chunk size: {chunk_length}\n")
             num_rows = len(data.loc[:,'V_p'])
             chunk_count = 0
-
+        
             for entry_number in range(num_rows-chunk_length):
                 # There are only (number of rows)/(size of chunk)-1 chunks since we
                 # are using one set of V_p values twice
@@ -67,6 +67,7 @@ def read_xlsx():
 
                     boundary_section_count+=1
                     chunk_count+=1
+                    
                     write_output(output_file,
                                   endA, 
                                   endB, 
@@ -95,7 +96,9 @@ def write_output(output_file,
     place = file_name[0: file_name.index('_')]
     chunk_place = f'{place}{chunk_count}'
     output_chunk = np.column_stack((output_time, endA, endB))
+
     output_chunk.reshape(chunk_length, 3)
+    
     namespace = {'boundary_number': f'{boundary_section_count}',
                  'location_chunk':'{:<20}'.format(chunk_place), 
                  'chunk_count': f'{chunk_length}'}
