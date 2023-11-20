@@ -39,6 +39,8 @@ raw_data_layer_thickness = []
 
 g = 9.81
 
+output_time = np.linspace(0.0, 60*6*119, num=chunk_length)
+
 prevValue=0
 for value in raw_data_depth_array:
   raw_data_layer_thickness.append(value-prevValue)
@@ -47,33 +49,47 @@ for value in raw_data_depth_array:
 
 delft_chunk_size = 10
 
+endA = np.zeros((chunk_length,10))
+endB = np.zeros((chunk_length,10))
+
 #------------------------------------------------------------------------------------------------
 
 def main():
 
+  with open(r'./file-conversions/data/format.txt',mode='r') as format_file:
+        
+    global output_format 
+    output_format = format_file.readlines()
+    output_format = ''.join(output_format)
+    
+  format_file.close()
+
   for file_name in os.listdir('./file-conversions/data/test_convert/'):
-    if "FULL" in file_name:
+    if "Boundry" in file_name:
       files_to_read.append(file_name) 
 
     else:
       FileNotFoundError
 
-  for file in files_to_read:
-    output_xlsx = read_xlsx(file)
-    output_scaling = apply_scaling(output_xlsx)
-    output_depth_bin = bin_depths(output_scaling)
-    output_bin_velocity = bin_velocity(output_depth_bin[0], output_depth_bin[1])
-    output_average_velocity = average_velocity(output_bin_velocity)
+  global file
 
-    # print(output_bin_velocity['depthBins'])
+  global output_file
+  global boundary_section_count
 
-    outTest = testFunc(output_depth_bin, output_average_velocity)
+  with open('./file-conversions/out/output.txt', 'w') as output_file:
     
-    print(outTest)
+    boundary_section_count = 0
 
-    # print(outTest)
+    for file in files_to_read:
+      output_xlsx = read_xlsx(file)
+      output_scaling = apply_scaling(output_xlsx)
+      output_depth_bin = bin_depths(output_scaling)
+      output_bin_velocity = bin_velocity(output_depth_bin[0], output_depth_bin[1])
+      output_average_velocity = average_velocity(output_bin_velocity)
+      invariants = invariant_calc(output_depth_bin, output_average_velocity)
+      generate_bct(invariants)
+  output_file.close()
 
-    # print(f"velocity bins: {output_bin_velocity['velocityBins']},\n\n\nThickness bins{output_bin_velocity['thicknessBins']}")
 #----------------------------------------Read xlsx-----------------------------------------------
 
 def read_xlsx(file):
@@ -96,11 +112,19 @@ def read_xlsx(file):
     pd_bin_data = pd_data.iloc[(current_chunk * chunk_length):(current_chunk * chunk_length + chunk_length)]
     pd_bin_data = pd_bin_data.drop(["Latitude", "Longitude", "Hour"], axis=1)
     np_bin_data = pd_bin_data.to_numpy()
-    nan_index = np.argwhere(np.isnan(np_bin_data[0]))[0][0]
-          
-    max_chunk_depth = raw_data_depth_array[nan_index - 1] 
+    # print(np.argwhere(np.isnan(np_bin_data[0])))
+    
+    if (len(np.argwhere(np.isnan(np_bin_data[0]))) > 0):
+      nan_index = np.argwhere(np.isnan(np_bin_data[0]))[0][0]
+    else:
+      nan_index=len(np_bin_data[0])
+     
+    max_chunk_depth = raw_data_depth_array[nan_index - 1]
+    
     delft_depth_array = np.linspace(max_chunk_depth/delft_chunk_size, max_chunk_depth, delft_chunk_size)
+    
     current_chunk_layer_thickness = [(x/max_chunk_depth * 100) for x in (raw_data_layer_thickness[0:nan_index])]
+    
     chunkDepth = raw_data_depth_array[0:(nan_index)]
 
     read_xlsx_output_dict['chunkDepth'].append(chunkDepth)
@@ -177,6 +201,8 @@ def bin_velocity(bin_velocity_depth_input, bin_velocity_input):
   return (bin_velocity_depth_input)
 #------------------------------------------------------------------------------------------------
 
+#---------------------------------------Average velocity-----------------------------------------
+
 def average_velocity(average_velocity_input):
 
   averaged_velocity=[]
@@ -194,7 +220,12 @@ def average_velocity(average_velocity_input):
 
   return averaged_velocity
 
-def testFunc(testFuncInputDepth,testFuncInputVel):
+#------------------------------------------------------------------------------------------------
+
+
+#------------------------------------------Invariants--------------------------------------------
+
+def invariant_calc(testFuncInputDepth,testFuncInputVel):
 
   # print(testFuncInputDepth[1]['delftDepth'])
   # print("\n\n")
@@ -206,11 +237,69 @@ def testFunc(testFuncInputDepth,testFuncInputVel):
     for list_count, list in enumerate(chunk):
       for element_count, element in enumerate(list):
         if element>=0:
-          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element +  (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
+          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element + (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
+        elif(testFuncInputDepth[1]['delftDepth'][chunk_number][element_count] == np.nan):
+          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = 0
         else:
           chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element - (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
 
   return chunkedAvergagedVelocity
+
+#------------------------------------------------------------------------------------------------
+
+#------------------------------------------Invariants--------------------------------------------
+
+def generate_bct(invariants):
+
+    global boundary_section_count  
+    
+    num_rows = int(len(invariants[0])*len(invariants))
+    chunk_count = 0
+    invariants = invariants.reshape(num_rows, delft_chunk_size)
+
+    for entry_number in range(num_rows-chunk_length):
+
+      endA[entry_number%chunk_length] = invariants[entry_number]
+      endB[entry_number%chunk_length] = invariants[entry_number+chunk_length]
+
+      if (entry_number%chunk_length == (chunk_length-1)):
+        boundary_section_count+=1
+        chunk_count+=1
+
+        write_output(output_file,
+                      endA, 
+                      endB, 
+                      output_format, 
+                      boundary_section_count, 
+                      file, 
+                      chunk_count)
+
+#------------------------------------------------------------------------------------------------
+
+#----------------------------------------Write to output-----------------------------------------
+
+def write_output(output_file, 
+                 endA, 
+                 endB, 
+                 file_format, 
+                 boundary_section_count, 
+                 file_name,
+                 chunk_count):
+    """ Writes the data to a .txt file according to an input format """
+
+    place = file_name[0: file_name.index('_')]
+    chunk_place = f'{place}{chunk_count}'
+    output_chunk = np.column_stack((output_time, endA, endB))
+    output_chunk.reshape(chunk_length, 21)
+    namespace = {'boundary_number': f'{boundary_section_count}',
+                 'location_chunk':'{:<20}'.format(chunk_place), 
+                 'chunk_count': f'{chunk_length}'}
+    file_format = file_format.format(**namespace)
+    output_file.write(file_format)
+
+    np.savetxt(output_file, output_chunk, fmt='% .7e')
+    
+#------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
     main()
