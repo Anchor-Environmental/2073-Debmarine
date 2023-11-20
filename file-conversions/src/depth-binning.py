@@ -6,10 +6,8 @@ import math
 #--------------------------------------Global Vars-----------------------------------------------
 
 files_to_read = []
-chunk_length = int(1*4)
-endA = np.zeros(chunk_length)
-endB = np.zeros(chunk_length)
-output_time = np.linspace(0.0, 60*6*3, num=4)
+chunk_length = int(30*4) # size of 
+
 raw_data_depth_array = [0.4940249, 
                1.541375,
                2.645669,
@@ -54,7 +52,7 @@ delft_chunk_size = 10
 def main():
 
   for file_name in os.listdir('./file-conversions/data/test_convert/'):
-    if "South" in file_name:
+    if "FULL" in file_name:
       files_to_read.append(file_name) 
 
     else:
@@ -67,9 +65,13 @@ def main():
     output_bin_velocity = bin_velocity(output_depth_bin[0], output_depth_bin[1])
     output_average_velocity = average_velocity(output_bin_velocity)
 
-    outTest = testFunc(output_depth_bin,output_average_velocity)
+    # print(output_bin_velocity['depthBins'])
+
+    outTest = testFunc(output_depth_bin, output_average_velocity)
     
     print(outTest)
+
+    # print(outTest)
 
     # print(f"velocity bins: {output_bin_velocity['velocityBins']},\n\n\nThickness bins{output_bin_velocity['thicknessBins']}")
 #----------------------------------------Read xlsx-----------------------------------------------
@@ -91,7 +93,7 @@ def read_xlsx(file):
 
   for current_chunk in range(int(len(pd_data)/chunk_length)):
     
-    pd_bin_data = pd_data.iloc[(current_chunk * 4):(current_chunk * 4 + chunk_length)]
+    pd_bin_data = pd_data.iloc[(current_chunk * chunk_length):(current_chunk * chunk_length + chunk_length)]
     pd_bin_data = pd_bin_data.drop(["Latitude", "Longitude", "Hour"], axis=1)
     np_bin_data = pd_bin_data.to_numpy()
     nan_index = np.argwhere(np.isnan(np_bin_data[0]))[0][0]
@@ -135,6 +137,7 @@ def bin_depths(bin_depths_input):
   }
   for chunkNumber, delft_depth_list in enumerate(bin_depths_input['delftDepth']):
     
+
     prevValue = 0
     depth_bins = []
     for depth in delft_depth_list:
@@ -199,13 +202,13 @@ def testFunc(testFuncInputDepth,testFuncInputVel):
   # print("\n\n")
 
   for chunk_number, chunk in enumerate(chunkedAvergagedVelocity):
-    print(f"data chunk: {chunk}\nDelft depth: {testFuncInputDepth[1]['delftDepth'][chunk_number]}")
+    
     for list_count, list in enumerate(chunk):
       for element_count, element in enumerate(list):
         if element>=0:
-          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element + np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])
+          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element +  (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
         else:
-          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element - np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])
+          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element - (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
 
   return chunkedAvergagedVelocity
 
