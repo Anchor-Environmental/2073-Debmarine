@@ -86,7 +86,8 @@ def main():
       output_depth_bin = bin_depths(output_scaling)
       output_bin_velocity = bin_velocity(output_depth_bin[0], output_depth_bin[1])
       output_average_velocity = average_velocity(output_bin_velocity)
-      invariants = invariant_calc(output_depth_bin, output_average_velocity)
+      output_average_velocity_nonan = remove_nan(output_average_velocity)
+      invariants = invariant_calc(output_depth_bin, output_average_velocity_nonan)
       generate_bct(invariants)
   output_file.close()
 
@@ -222,6 +223,19 @@ def average_velocity(average_velocity_input):
 
 #------------------------------------------------------------------------------------------------
 
+#---------------------------------------Remove NaN-----------------------------------------
+
+def remove_nan(average_velocity_input):
+
+  for vp_count,vp in enumerate(average_velocity_input):
+    
+    if vp is np.nan:
+      average_velocity_input[vp_count] = (average_velocity_input[vp_count-1] + average_velocity_input[vp_count+1]) / 2
+
+  return average_velocity_input
+
+#------------------------------------------------------------------------------------------------
+
 
 #------------------------------------------Invariants--------------------------------------------
 
@@ -230,18 +244,18 @@ def invariant_calc(testFuncInputDepth,testFuncInputVel):
   # print(testFuncInputDepth[1]['delftDepth'])
   # print("\n\n")
   chunkedAvergagedVelocity = np.reshape(testFuncInputVel, (len(testFuncInputDepth[1]['delftDepth']),chunk_length,delft_chunk_size))
-  # print("\n\n")
-
+  
   for chunk_number, chunk in enumerate(chunkedAvergagedVelocity):
     
     for list_count, list in enumerate(chunk):
       for element_count, element in enumerate(list):
+        
         if element>=0:
           chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element + (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
-        elif(testFuncInputDepth[1]['delftDepth'][chunk_number][element_count] == np.nan):
-          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = 0
+          
         else:
           chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element - (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
+          # print("NO!!!")
 
   return chunkedAvergagedVelocity
 
@@ -253,7 +267,7 @@ def generate_bct(invariants):
 
     global boundary_section_count  
     
-    num_rows = int(len(invariants[0])*len(invariants))
+    num_rows = int(len(invariants[0]) * len(invariants))
     chunk_count = 0
     invariants = invariants.reshape(num_rows, delft_chunk_size)
 
