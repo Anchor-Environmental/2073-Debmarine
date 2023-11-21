@@ -5,6 +5,8 @@ import math
 
 #--------------------------------------Global Vars-----------------------------------------------
 
+
+
 files_to_read = []
 chunk_length = int(30*4) # size of 
 
@@ -51,6 +53,8 @@ delft_chunk_size = 10
 
 endA = np.zeros((chunk_length,10))
 endB = np.zeros((chunk_length,10))
+
+riemannInvariant = False
 
 #------------------------------------------------------------------------------------------------
 
@@ -245,17 +249,18 @@ def invariant_calc(testFuncInputDepth,testFuncInputVel):
   # print("\n\n")
   chunkedAvergagedVelocity = np.reshape(testFuncInputVel, (len(testFuncInputDepth[1]['delftDepth']),chunk_length,delft_chunk_size))
   
-  for chunk_number, chunk in enumerate(chunkedAvergagedVelocity):
-    
-    for list_count, list in enumerate(chunk):
-      for element_count, element in enumerate(list):
-        
-        if element>=0:
-          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element + (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
+  if riemannInvariant:
+    for chunk_number, chunk in enumerate(chunkedAvergagedVelocity):
+      
+      for list_count, list in enumerate(chunk):
+        for element_count, element in enumerate(list):
           
-        else:
-          chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element - (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
-          # print("NO!!!")
+          if element>=0:
+            chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element + (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
+            
+          else:
+            chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element - (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
+            
 
   return chunkedAvergagedVelocity
 
