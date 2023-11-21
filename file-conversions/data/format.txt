@@ -1,5 +1,5 @@
 table-name           'Boundary Section : {boundary_number}'
-contents             'Logarithmic         '
+contents             '3d-profile          '
 location             '{location_chunk}'
 time-function        'non-equidistant'
 reference-time       20220101
