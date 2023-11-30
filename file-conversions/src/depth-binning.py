@@ -42,7 +42,7 @@ raw_data_layer_thickness = []
 g = 9.81
 
 output_time = np.linspace(0.0, 60*6*(chunk_length-1), num=chunk_length) # converting hours to minutes
-print(output_time)
+
 prevValue=0
 for value in raw_data_depth_array:
   raw_data_layer_thickness.append(value-prevValue)
@@ -68,7 +68,7 @@ def main():
     
   format_file.close()
 
-  for file_name in os.listdir('./file-conversions/data/dec_jan_convert/'):
+  for file_name in os.listdir('./file-conversions/data/jan2022_june2023/'):
     if "Boundry" in file_name:
       files_to_read.append(file_name) 
 
@@ -110,7 +110,7 @@ def read_xlsx(file):
   print(f'Current File: {file}')
   print(f"Chunk size: {chunk_length}")
   
-  pd_data = pd.read_excel(f'./file-conversions/data/dec_jan_convert/{file}', sheet_name = 0, index_col = 0)
+  pd_data = pd.read_excel(f'./file-conversions/data/jan2022_june2023/{file}', sheet_name = 0, index_col = 0)
 
   for current_chunk in range(int(len(pd_data)/chunk_length)):
     
