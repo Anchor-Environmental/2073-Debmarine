@@ -8,7 +8,7 @@ import math
 
 
 files_to_read = []
-chunk_length = int(31*4*2) # number of days in month * number of intervals in each day
+chunk_length = int((31+28+31+30+31+30+31+31+30+31+30+31+31+28+31+30+31+30)*4) # number of days in month * number of intervals in each day
 
 raw_data_depth_array = [0.4940249, 
                1.541375,
@@ -41,7 +41,7 @@ raw_data_layer_thickness = []
 
 g = 9.81
 
-output_time = np.linspace(0.0, 60*6*247, num=chunk_length)
+output_time = np.linspace(0.0, 60*6*(chunk_length-1), num=chunk_length) # converting hours to minutes
 print(output_time)
 prevValue=0
 for value in raw_data_depth_array:
