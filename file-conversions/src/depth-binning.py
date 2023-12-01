@@ -8,7 +8,8 @@ import math
 
 
 files_to_read = []
-chunk_length = int((31+28+31+30+31+30+31+31+30+31+30+31+31+28+31+30+31+30)*4) # number of days in month * number of intervals in each day
+# chunk_length = int((31+28+31+30+31+30+31+31+30+31+30+31+31+28+31+30+31+30)*4) # number of days in month * number of intervals in each day
+chunk_length = int(30*4)
 
 raw_data_depth_array = [0.4940249, 
                1.541375,
@@ -49,10 +50,12 @@ for value in raw_data_depth_array:
   prevValue = value
 
 
-delft_chunk_size = 10
+delft_chunk_size = 12
+delft_chunk_thickness = np.array([2,3,4,6,8,10,12,15,12,10,10,8])/100
+delft_chunk_thickness = np.cumsum(delft_chunk_thickness)
 
-endA = np.zeros((chunk_length,10))
-endB = np.zeros((chunk_length,10))
+endA = np.zeros((chunk_length, delft_chunk_size))
+endB = np.zeros((chunk_length, delft_chunk_size))
 
 riemannInvariant = False
 
@@ -68,8 +71,8 @@ def main():
     
   format_file.close()
 
-  for file_name in os.listdir('./file-conversions/data/jan2022_june2023/'):
-    if "Boundry" in file_name:
+  for file_name in os.listdir('./file-conversions/data/nov_convert/'):
+    if "South" in file_name:
       files_to_read.append(file_name) 
 
     else:
@@ -93,6 +96,7 @@ def main():
       output_average_velocity_nonan = remove_nan(output_average_velocity)
       invariants = invariant_calc(output_depth_bin, output_average_velocity_nonan)
       generate_bct(invariants)
+    
   output_file.close()
 
 #----------------------------------------Read xlsx-----------------------------------------------
@@ -110,14 +114,14 @@ def read_xlsx(file):
   print(f'Current File: {file}')
   print(f"Chunk size: {chunk_length}")
   
-  pd_data = pd.read_excel(f'./file-conversions/data/jan2022_june2023/{file}', sheet_name = 0, index_col = 0)
+  pd_data = pd.read_excel(f'./file-conversions/data/nov_convert/{file}', sheet_name = 0, index_col = 0)
 
   for current_chunk in range(int(len(pd_data)/chunk_length)):
     
     pd_bin_data = pd_data.iloc[(current_chunk * chunk_length):(current_chunk * chunk_length + chunk_length)]
     pd_bin_data = pd_bin_data.drop(["Latitude", "Longitude", "Hour"], axis=1)
     np_bin_data = pd_bin_data.to_numpy()
-    # print(np.argwhere(np.isnan(np_bin_data[0])))
+    
     
     if (len(np.argwhere(np.isnan(np_bin_data[0]))) > 0):
       nan_index = np.argwhere(np.isnan(np_bin_data[0]))[0][0]
@@ -126,10 +130,11 @@ def read_xlsx(file):
      
     max_chunk_depth = raw_data_depth_array[nan_index - 1]
     
-    delft_depth_array = np.linspace(max_chunk_depth/delft_chunk_size, max_chunk_depth, delft_chunk_size)
-    
+    # delft_depth_array = np.linspace(max_chunk_depth/delft_chunk_size, max_chunk_depth, delft_chunk_size)
+    delft_depth_array = max_chunk_depth*delft_chunk_thickness
+
     current_chunk_layer_thickness = [(x/max_chunk_depth * 100) for x in (raw_data_layer_thickness[0:nan_index])]
-    
+
     chunkDepth = raw_data_depth_array[0:(nan_index)]
 
     read_xlsx_output_dict['chunkDepth'].append(chunkDepth)
@@ -150,7 +155,7 @@ def apply_scaling(exctracted_dict):
         vp_list = [no_nan for no_nan in vp_list if not math.isnan(no_nan)]
         weighted_vp.append([vp*exctracted_dict['percentLayerThickness'][chunkNumber][vp_count] for  vp_count, vp in enumerate(vp_list)])
         
-        # print(f"The vp array is: {vp} The is : {scaling_input['percentLayerThickness'][chunkNumber]}")
+       
     exctracted_dict['weightedVp'].append(weighted_vp)
 
   return(exctracted_dict)
@@ -170,7 +175,7 @@ def bin_depths(bin_depths_input):
     prevValue = 0
     depth_bins = []
     for depth in delft_depth_list:
-      
+      print(depth)
       selectednum = [num for num in bin_depths_input['chunkDepth'][chunkNumber] if prevValue < num <= depth]
       depth_bins.append(selectednum)
       prevValue=depth
@@ -186,10 +191,8 @@ def bin_velocity(bin_velocity_depth_input, bin_velocity_input):
   
   for binned_count, binnedDepth in enumerate(bin_velocity_depth_input['depthBins']):
 
-    # print("\n\n\n",bin_velocity_input['percentLayerThickness'][binned_count],"\n\n\n")
-
     for weightedVp_count, flatList in enumerate(bin_velocity_input['weightedVp'][binned_count]):
-      # print(flatList)
+     
       index = 0
       
       for bin in binnedDepth:
@@ -234,19 +237,17 @@ def remove_nan(average_velocity_input):
   for vp_count,vp in enumerate(average_velocity_input):
     
     if vp is np.nan:
+      
       average_velocity_input[vp_count] = (average_velocity_input[vp_count-1] + average_velocity_input[vp_count+1]) / 2
 
   return average_velocity_input
 
 #------------------------------------------------------------------------------------------------
 
-
 #------------------------------------------Invariants--------------------------------------------
 
 def invariant_calc(testFuncInputDepth,testFuncInputVel):
 
-  # print(testFuncInputDepth[1]['delftDepth'])
-  # print("\n\n")
   chunkedAvergagedVelocity = np.reshape(testFuncInputVel, (len(testFuncInputDepth[1]['delftDepth']),chunk_length,delft_chunk_size))
   
   if riemannInvariant:
@@ -309,7 +310,7 @@ def write_output(output_file,
     place = file_name[0: file_name.index('_')]
     chunk_place = f'{place}{chunk_count}'
     output_chunk = np.column_stack((output_time, endA, endB))
-    output_chunk.reshape(chunk_length, 21)
+    output_chunk.reshape(chunk_length, 2*delft_chunk_size+1)
     namespace = {'boundary_number': f'{boundary_section_count}',
                  'location_chunk':'{:<20}'.format(chunk_place), 
                  'chunk_count': f'{chunk_length}'}
