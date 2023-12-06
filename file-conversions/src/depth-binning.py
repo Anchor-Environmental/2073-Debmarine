@@ -8,8 +8,7 @@ import math
 
 
 files_to_read = []
-# chunk_length = int((31+28+31+30+31+30+31+31+30+31+30+31+31+28+31+30+31+30)*4) # number of days in month * number of intervals in each day
-chunk_length = int(30*4)
+chunk_length = int((31+28+31+30+31+30+31+31+30+31+30+31+31+28+31+30+31+30)*4) # number of days in month * number of intervals in each day
 
 raw_data_depth_array = [0.4940249, 
                1.541375,
@@ -49,15 +48,14 @@ for value in raw_data_depth_array:
   raw_data_layer_thickness.append(value-prevValue)
   prevValue = value
 
-
 delft_chunk_size = 12
+
 delft_chunk_thickness = np.array([2,3,4,6,8,10,12,15,12,10,10,8])/100
 delft_chunk_thickness = np.cumsum(delft_chunk_thickness)
-
 endA = np.zeros((chunk_length, delft_chunk_size))
 endB = np.zeros((chunk_length, delft_chunk_size))
 
-riemannInvariant = False
+# riemannInvariant = False
 
 #------------------------------------------------------------------------------------------------
 
@@ -71,8 +69,8 @@ def main():
     
   format_file.close()
 
-  for file_name in os.listdir('./file-conversions/data/nov_convert/'):
-    if "South" in file_name:
+  for file_name in os.listdir('./file-conversions/data/jan2022_june2023/'):
+    if "Boundry" in file_name:
       files_to_read.append(file_name) 
 
     else:
@@ -99,6 +97,8 @@ def main():
     
   output_file.close()
 
+  print("DONE!!!")
+
 #----------------------------------------Read xlsx-----------------------------------------------
 
 def read_xlsx(file):
@@ -114,7 +114,7 @@ def read_xlsx(file):
   print(f'Current File: {file}')
   print(f"Chunk size: {chunk_length}")
   
-  pd_data = pd.read_excel(f'./file-conversions/data/nov_convert/{file}', sheet_name = 0, index_col = 0)
+  pd_data = pd.read_excel(f'./file-conversions/data/jan2022_june2023/{file}', sheet_name = 0, index_col = 0)
 
   for current_chunk in range(int(len(pd_data)/chunk_length)):
     
@@ -130,10 +130,9 @@ def read_xlsx(file):
      
     max_chunk_depth = raw_data_depth_array[nan_index - 1]
     
-    # delft_depth_array = np.linspace(max_chunk_depth/delft_chunk_size, max_chunk_depth, delft_chunk_size)
     delft_depth_array = max_chunk_depth*delft_chunk_thickness
 
-    current_chunk_layer_thickness = [(x/max_chunk_depth * 100) for x in (raw_data_layer_thickness[0:nan_index])]
+    current_chunk_layer_thickness = [(x) for x in (raw_data_layer_thickness[0:nan_index])]
 
     chunkDepth = raw_data_depth_array[0:(nan_index)]
 
@@ -175,8 +174,7 @@ def bin_depths(bin_depths_input):
     prevValue = 0
     depth_bins = []
     for depth in delft_depth_list:
-      print(depth)
-      selectednum = [num for num in bin_depths_input['chunkDepth'][chunkNumber] if prevValue < num <= depth]
+      selectednum = [num for num in bin_depths_input['chunkDepth'][chunkNumber] if np.around(prevValue,4) < np.around(num,4) <= np.around(depth,4)]
       depth_bins.append(selectednum)
       prevValue=depth
     
@@ -250,17 +248,17 @@ def invariant_calc(testFuncInputDepth,testFuncInputVel):
 
   chunkedAvergagedVelocity = np.reshape(testFuncInputVel, (len(testFuncInputDepth[1]['delftDepth']),chunk_length,delft_chunk_size))
   
-  if riemannInvariant:
-    for chunk_number, chunk in enumerate(chunkedAvergagedVelocity):
+  # if riemannInvariant:
+  #   for chunk_number, chunk in enumerate(chunkedAvergagedVelocity):
       
-      for list_count, list in enumerate(chunk):
-        for element_count, element in enumerate(list):
+  #     for list_count, list in enumerate(chunk):
+  #       for element_count, element in enumerate(list):
           
-          if element>=0:
-            chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element + (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
+  #         if element>=0:
+  #           chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element + (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
             
-          else:
-            chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element - (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
+  #         else:
+  #           chunkedAvergagedVelocity[chunk_number][list_count][element_count] = element - (2*(np.sqrt(g*testFuncInputDepth[1]['delftDepth'][chunk_number][element_count])))
             
 
   return chunkedAvergagedVelocity
