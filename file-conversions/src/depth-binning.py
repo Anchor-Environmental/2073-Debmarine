@@ -122,7 +122,6 @@ def read_xlsx(file):
     pd_bin_data = pd_bin_data.drop(["Latitude", "Longitude", "Hour"], axis=1)
     np_bin_data = pd_bin_data.to_numpy()
     
-    
     if (len(np.argwhere(np.isnan(np_bin_data[0]))) > 0):
       nan_index = np.argwhere(np.isnan(np_bin_data[0]))[0][0]
     else:
