@@ -24,7 +24,7 @@
 
     The repo currently contains a script to convert a batch of .xlsx files to .txt files in the .bct format 🔃
 
-    The source code can be found under ./PyConv/src/main.py 
+    The source code can be found under ./file-conversions/src/depth-binning.py 
 
     The data that it pulls from is ./PyConv/data/convert and the results are in ./PyConv/out 📂
 ---
