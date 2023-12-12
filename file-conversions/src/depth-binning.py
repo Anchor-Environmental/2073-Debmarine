@@ -42,6 +42,7 @@ raw_data_layer_thickness = []
 g = 9.81
 
 output_time = np.linspace(0.0, 60*6*(chunk_length-1), num=chunk_length) # converting hours to minutes
+output_time = output_time + 120
 
 prevValue=0
 for value in raw_data_depth_array:
@@ -151,7 +152,7 @@ def apply_scaling(exctracted_dict):
     weighted_vp = []
     for vp_list in chunk:
         vp_list = [no_nan for no_nan in vp_list if not math.isnan(no_nan)]
-        weighted_vp.append([vp*exctracted_dict['percentLayerThickness'][chunkNumber][vp_count] for  vp_count, vp in enumerate(vp_list)])
+        weighted_vp.append([-1*vp*exctracted_dict['percentLayerThickness'][chunkNumber][vp_count] for  vp_count, vp in enumerate(vp_list)])
         
        
     exctracted_dict['weightedVp'].append(weighted_vp)
