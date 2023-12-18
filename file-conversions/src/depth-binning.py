@@ -49,9 +49,11 @@ for value in raw_data_depth_array:
   raw_data_layer_thickness.append(value-prevValue)
   prevValue = value
 
-delft_chunk_size = 12
 
-delft_chunk_thickness = np.array([2,3,4,6,8,10,12,15,12,10,10,8])/100
+
+delft_chunk_thickness = np.array([5,7,9,12,15,20,18,14])
+delft_chunk_size = len(delft_chunk_thickness)
+delft_chunk_thickness = delft_chunk_thickness/100
 delft_chunk_thickness = np.cumsum(delft_chunk_thickness)
 endA = np.zeros((chunk_length, delft_chunk_size))
 endB = np.zeros((chunk_length, delft_chunk_size))
