@@ -49,9 +49,7 @@ for value in raw_data_depth_array:
   raw_data_layer_thickness.append(value-prevValue)
   prevValue = value
 
-
-
-delft_chunk_thickness = np.array([5,7,9,12,15,20,18,14])
+delft_chunk_thickness = np.array([2,3,4,6,8,10,12,15,20,20])
 delft_chunk_size = len(delft_chunk_thickness)
 delft_chunk_thickness = delft_chunk_thickness/100
 delft_chunk_thickness = np.cumsum(delft_chunk_thickness)
@@ -72,7 +70,7 @@ def main():
     
   format_file.close()
 
-  for file_name in os.listdir('./file-conversions/data/jan2022_june2023/'):
+  for file_name in os.listdir('./file-conversions/data/jan2022_june2023_vp'):
     if "Boundry" in file_name:
       files_to_read.append(file_name) 
 
@@ -117,7 +115,7 @@ def read_xlsx(file):
   print(f'Current File: {file}')
   print(f"Chunk size: {chunk_length}")
   
-  pd_data = pd.read_excel(f'./file-conversions/data/jan2022_june2023/{file}', sheet_name = 0, index_col = 0)
+  pd_data = pd.read_excel(f'./file-conversions/data/jan2022_june2023_vp/{file}', sheet_name = 0, index_col = 0)
 
   for current_chunk in range(int(len(pd_data)/chunk_length)):
     
