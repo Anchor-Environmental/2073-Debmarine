@@ -18,7 +18,7 @@ postDischargeRamp = np.zeros(numberOfDays)
 
 for dischargeHourIndex, hour in enumerate(dischargeHour):
   
-  dischargeHour[dischargeHourIndex] = random.randint(1,(24-maxTime))
+  dischargeHour[dischargeHourIndex] = random.randint(1,(24-(maxTime+1)))
 
   startDischargeTime[dischargeHourIndex] = dischargeHour[dischargeHourIndex]*60 + (startTime) + (dischargeHourIndex*(1440))
   endDischargeTime[dischargeHourIndex] = startDischargeTime[dischargeHourIndex] + (maxTime*60)
