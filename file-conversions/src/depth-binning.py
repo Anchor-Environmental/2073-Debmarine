@@ -42,7 +42,7 @@ raw_data_layer_thickness = []
 g = 9.81
 
 output_time = np.linspace(0.0, 60*6*(chunk_length-1), num=chunk_length) # converting hours to minutes
-output_time = output_time + 120
+output_time = output_time + 120 # this should be adjusting the UTM time
 
 prevValue=0
 for value in raw_data_depth_array:
