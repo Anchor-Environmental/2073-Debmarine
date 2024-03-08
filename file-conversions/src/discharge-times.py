@@ -1,14 +1,14 @@
 import numpy as np
 import random
 
-dischargingTime = 8 # hrs
+dischargingTime = 10 # hrs
 
-dischargeName = "SeaVuna"
+dischargeName = "Afro_1day"
 
-startTime = 4.3200000e+004
-endTime = 1.3248000e+005
+startTime = 8.7840000e+004
+endTime = 9.6480000e+004
 startDischargeFlowRate = 0
-constDischargeFlowRate = 8.68e-02
+constDischargeFlowRate = 1.31e-01
 endDischargeFlowRate = 0
 
 numberOfDays = int((endTime-startTime)/60/24)
