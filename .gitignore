@@ -1,2 +1,7 @@
 file-conversions/data
 !format.txt
+file-conversions/out/output.txt
+file-conversions/out/discharges/Afro_1day.csv
+file-conversions/out/discharges/Lucky_1day.csv
+file-conversions/out/discharges/Pioneer_1day.csv
+file-conversions/out/discharges/SeaVuna_1day.csv
