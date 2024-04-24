@@ -8,7 +8,7 @@ import math
 
 
 files_to_read = []
-chunk_length = int((31+28+31+30+31+30+31+31+30+31+30+31+31+28+31+30+31+30)*4) # number of days in month * number of intervals in each day
+chunk_length = int((31+28+31+30+31+30+31+31+30+31+30+31+31+28+31+30+31+30+31+31+30+31+30)*4) # number of days in month * number of intervals in each day
 
 raw_data_depth_array = [0.4940249, 
                1.541375,
@@ -70,7 +70,7 @@ def main():
     
   format_file.close()
 
-  for file_name in os.listdir('./file-conversions/data/jan2022_june2023_magnitude'):
+  for file_name in os.listdir('./file-conversions/data/jan2022_nov2023_magnitude'):
     if "Boundry" in file_name:
       files_to_read.append(file_name) 
 
@@ -115,7 +115,7 @@ def read_xlsx(file):
   print(f'Current File: {file}')
   print(f"Chunk size: {chunk_length}")
   
-  pd_data = pd.read_excel(f'./file-conversions/data/jan2022_june2023_magnitude/{file}', sheet_name = 0, index_col = 0)
+  pd_data = pd.read_excel(f'./file-conversions/data/jan2022_nov2023_magnitude/{file}', sheet_name = 0, index_col = 0)
 
   for current_chunk in range(int(len(pd_data)/chunk_length)):
     
