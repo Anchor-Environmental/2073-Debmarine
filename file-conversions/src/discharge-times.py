@@ -59,7 +59,6 @@ dischargeFlowRates = dischargeFlowRates.flatten()
 
 completeDischargeList = np.stack((completeDischargeList, dischargeFlowRates), axis=1)
 
-
 print(f'pre discharge ramp: {preDischargeRamp} \n start discharge: {startDischargeTime} \n end discharge: {endDischargeTime} \n post discharge ramp: {postDischargeRamp}')
 print("\n\n\n")
 print(completeDischargeList)
