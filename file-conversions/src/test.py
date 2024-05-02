@@ -1,15 +1,20 @@
 import numpy as np
 
-start_dredge_time = 36000
-dredge_days = 7
+# user defined inputs
+
 dredge_zone = 30
-mins_in_day = 1440
+start_dredge_time = 230400
+dredge_days = 12
 num_dredge_cells = 30
+start_flow_rate = 0.051
+stop_flow_rate = 0
+
+#--------------------
+
+mins_in_day = 1440
 end_dredge_time = dredge_days * mins_in_day + start_dredge_time
 loops = end_dredge_time - start_dredge_time
-discharge_interval = 48
-start_flow_rate = 0.073
-stop_flow_rate = 0
+discharge_interval = 48 # (24 hours/cells dredged)*60 mins 
 
 start_flow = np.zeros(dredge_days)
 stop_flow = np.zeros(dredge_days)
